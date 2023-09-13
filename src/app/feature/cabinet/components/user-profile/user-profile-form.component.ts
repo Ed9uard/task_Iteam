@@ -79,7 +79,6 @@ export class UserProfileFormComponent {
         }
     }
    
-
     onFrameworkChange() {
         const frameworkControl = this.patternForm.get('framework');
         const frameworkVersionControl = this.patternForm.get('frameworkVersion');
@@ -92,28 +91,10 @@ export class UserProfileFormComponent {
             frameworkVersionControl.reset();
           }
         }
-      }
-
-    onSave() {
-        if (this.patternForm.valid) {
-            const formData = this.patternForm.value;
-            const hobbies = formData.hobby.map((h: any) => ({
-                name: h.name,
-                duration: h.duration,
-                }));
-
-            const serverData = {
-                firstName: formData.firstName,
-                lastName: formData.lastName,
-                dateOfBirth: this.formatDate(formData.dateOfBirth),
-                framework: formData.framework.code,
-                frameworkVersion: formData.frameworkVersion,
-                email: formData.email,
-                hobby: hobbies,
-            };
-        
-            this.saveObject(serverData)
-        }
+    }
+    
+    clearFrameworkSelection() {
+        this.patternForm.get('framework')?.setValue(''); 
     }
 
     formatDate(date: Date): string {
@@ -135,6 +116,28 @@ export class UserProfileFormComponent {
         this.frameworkVersionsCache[selectedFramework] = versions;
       
         return versions;
+    }
+
+    onSave() {
+        if (this.patternForm.valid) {
+            const formData = this.patternForm.value;
+            const hobbies = formData.hobby.map((h: any) => ({
+                name: h.name,
+                duration: h.duration,
+                }));
+
+            const serverData = {
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                dateOfBirth: this.formatDate(formData.dateOfBirth),
+                framework: formData.framework.code,
+                frameworkVersion: formData.frameworkVersion,
+                email: formData.email,
+                hobby: hobbies,
+            };
+        
+            this.saveObject(serverData)
+        }
     }
       
     saveObject(modalData: any) {

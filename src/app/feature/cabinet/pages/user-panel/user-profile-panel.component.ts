@@ -13,8 +13,6 @@ import { TranslateService } from '@ngx-translate/core';
 export class UserPanelComponent implements OnInit {
     // catalogs
     frameworks$: Observable<Framework[]> = of([]);
-    frameworkVersions$: Observable<FrameworkVersion[]> = of([]);
-
 
     constructor(
         private cabinetSvc: CabinetService,

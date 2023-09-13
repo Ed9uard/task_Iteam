@@ -63,7 +63,9 @@
                     [formControl]="patternForm.get('framework')"
                     [autoDisplayFirst]="false"
                     [optionLabel]="'name'"
-                    styleClass="w-full p-inputtext-sm"
+                    styleClass="p-inputtext-sm w-full wrapped-dropdown-items"
+                    showClear="true"
+                    (onClear)="clearFrameworkSelection()"
                 >
                 </p-dropdown>
                 <div *ngIf="patternForm.get('framework')?.invalid && patternForm.get('framework')?.dirty"
@@ -79,8 +81,8 @@
                     [options]="getFrameworkVersions()"
                     [formControl]="patternForm.get('frameworkVersion')"
                     [autoDisplayFirst]="false"
-                
                     styleClass="w-full p-inputtext-sm"
+                   
                 >
                 </p-dropdown>
                 <div *ngIf="patternForm.get('frameworkVersion')?.invalid && patternForm.get('frameworkVersion')?.dirty"
