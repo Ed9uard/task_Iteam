@@ -83,54 +83,6 @@ This project uses @ngx-translate as solution for internationalization. It's alre
 
 Documentation: https://github.com/ngx-translate/core
 
-Dropdown with available languages populated by `LANGUAGES` array in `assets/config/config.json`. I decided to define them in this way (and not on server), because it adds you an ability to bundle specific languages within the app and add/remove them as needed without rebuilding the app itself. Also, the user will able to choose a language before the authentication (and you don't need separate insecure endpoint just for the languages list).
-
-Internationalization file content example `en.json`:
-```
-{
-  "FOOTER": {
-    "COPYRIGHT": "© 2021 Sergei Sarkisian",
-    "LICENSE": "LICENSE"
-  },
-  "HOME": {
-    "OPEN_TEST_MODAL_BUTTON": "Open Test Modal",
-    "SHOW_TOAST": "Show Toast",
-    "TOAST_MESSAGE": "Here is the toast message"
-  },
-  "LOGIN_FORM": {
-    "401_LOGIN_ERROR": "Incorrect login and/or password",
-    "403_LOGIN_ERROR": "Incorrect login and/or password or user has no privileges",
-    "GREETING_MESSAGE": "Welcome, please use the form to sign-in.",
-    "PASSWORD": "Password",
-    "PASSWORD_PLACEHOLDER": "Enter your password",
-    "SIGN_IN": "Sign In",
-    "USERNAME": "Username",
-    "USERNAME_PLACEHOLDER": "Enter your username"
-  },
-  "NAVBAR": {
-    "CURRENT_USER":  "Current user",
-    "SIGN_OUT": "Sign out"
-  },
-  "TEST_MODAL": {
-    "CLOSE_BUTTON": "Close",
-    "CONTENT": "Here should be some content",
-    "TITLE": "This is the test modal"
-  }
-}
-```
-
-Pseudo code usage example:
-```
-constructor(private i18n: TranslateService) {}
-
-ngOnInit(): void {
-    this.i18n.addLangs('en');
-    this.i18n.use('en');
-}
-```
-
-File name (without extension) is the key for usage in `this.i18n.use(lang)` method (`lang will be 'en' in case of en.json`).
-
 ### Adding new language
 
 1. Add new language file (for example `ru.json`) to the i18n file.
