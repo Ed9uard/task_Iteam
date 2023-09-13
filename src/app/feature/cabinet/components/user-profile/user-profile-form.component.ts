@@ -95,6 +95,8 @@ export class UserProfileFormComponent {
     
     clearFrameworkSelection() {
         this.patternForm.get('framework')?.setValue(''); 
+        this.patternForm.get('frameworkVersion')?.disable();
+        this.patternForm.get('frameworkVersion')?.reset();
     }
 
     formatDate(date: Date): string {
