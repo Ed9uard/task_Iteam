@@ -1,0 +1,112 @@
+// This is the main styles file in the application.
+// The application uses SCSS for styling by default.
+// All the styles imports of 3rd party styles should be here except the imports of
+// PrimeFlex variables (see footer.scss for example)
+
+@import "~normalize.css";
+@import "~primeicons/primeicons.css";
+@import "~primeflex/primeflex.min.css";
+@import "~primeng/resources/primeng.min.css";
+@import "~primeng/resources/themes/saga-blue/theme.css";
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
+
+// i'm using the 'app' prefix for the variables to not override vars imported from Bulma's generic Sass
+$app_primary_font_family: 'Open Sans', Roboto, Arial, sans-serif;
+$app_body_font-color: #4a4a4a;
+
+// Import your desired fonts here
+// It's better to use self-hosted fonts
+// I'm using https://google-webfonts-helper.herokuapp.com/fonts to deal with it
+/* open-sans-300 - latin_cyrillic */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Open Sans Light'), local('OpenSans-Light'),
+  url('./assets/fonts/open-sans-v17-latin_cyrillic-300.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+  url('./assets/fonts/open-sans-v17-latin_cyrillic-300.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* open-sans-regular - latin_cyrillic */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans Regular'), local('OpenSans-Regular'),
+  url('./assets/fonts/open-sans-v17-latin_cyrillic-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+  url('./assets/fonts/open-sans-v17-latin_cyrillic-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* open-sans-italic - latin_cyrillic */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Open Sans Italic'), local('OpenSans-Italic'),
+  url('./assets/fonts/open-sans-v17-latin_cyrillic-italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+  url('./assets/fonts/open-sans-v17-latin_cyrillic-italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* open-sans-600 - latin_cyrillic */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Open Sans SemiBold'), local('OpenSans-SemiBold'),
+  url('./assets/fonts/open-sans-v17-latin_cyrillic-600.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+  url('./assets/fonts/open-sans-v17-latin_cyrillic-600.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* open-sans-800 - latin_cyrillic */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 800;
+  src: local('Open Sans ExtraBold'), local('OpenSans-ExtraBold'),
+  url('./assets/fonts/open-sans-v17-latin_cyrillic-800.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+  url('./assets/fonts/open-sans-v17-latin_cyrillic-800.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+html {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  font-size: 14px;
+}
+
+body {
+  color: $app_body_font-color;
+  font-family: $app_primary_font_family;
+  font-size: 1em;
+  font-weight: 400;
+  height: 100vh;
+  line-height: 1.5;
+  overflow-x: auto;
+  overflow-y: auto;
+  width: 100vw;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  line-height: 1;
+}
+
+:root {
+  font-family: $app_primary_font_family;
+}
+
+.p-component,
+.p-link,
+.p-autocomplete.p-autocomplete-multiple .p-autocomplete-multiple-container .p-autocomplete-input-token input,
+.p-chips .p-chips-multiple-container .p-chips-input-token input,
+.p-inputtext,
+.p-terminal .p-terminal-input {
+  font-family: $app_primary_font_family
+}
+
+.p-inputtext-sm .p-multiselect-label {
+  font-size: 0.875rem;
+  padding: 6.125px 6.125px 5.125px;
+}
+
+.p-paginator-rpp-options .p-dropdown-label {
+  line-height: 1;
+}

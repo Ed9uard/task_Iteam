@@ -1,0 +1,62 @@
+<div class="flex flex-row justify-center align-center gap-2">
+    <div class="flex flex-column gap-2"> 
+        <input
+            id="float-input"
+            type="text"
+            size="30"
+            pInputText
+            
+            class="p-inputtext-sm"
+            [formControl]="filterForm.get('floatInput')"
+        >
+    </div>
+
+    <div class="flex flex-column gap-2"> <!-- Створити нову колонку для кнопок -->
+        <div class="p-d-flex">
+        <button
+            pButton
+            pRipple
+            style="width: 100%;"
+            type="submit"
+            class="p-button-sm p-button-outlined custom-button"
+            (click)="onStartStopTimer()"
+        >
+            <i class="fas fa-play" style="margin-right: 5px;"></i>
+            <span *ngIf="isRunning; else startTimerLabel" class="button-text">
+                {{ 'GENERAL.BUTTONS.STOP_TIMER' | translate }}
+            </span>
+            <ng-template #startTimerLabel>
+                <span class="button-text">{{ 'GENERAL.BUTTONS.START_TIMER' | translate }}</span>
+            </ng-template>
+        </button>
+        </div>
+
+        <div class="p-d-flex">
+            <button
+                pButton
+                pRipple
+                style="width: 175px" 
+                [label]="'GENERAL.BUTTONS.WAIT_TIMER' | translate"
+                type="button"
+                class="p-button-sm p-button-outlined"
+                (click)="onWaitTimer()"
+            >
+            <i class="fas fa-pause" style="margin-right: 5px;"></i>
+            </button>
+        </div>
+
+        <div class="p-d-flex">
+            <button
+                pButton
+                pRipple
+                style="width: 175px" 
+                [label]="'GENERAL.BUTTONS.RESET_TIMER' | translate"
+                type="button"
+                class="p-button-sm p-button-outlined"
+                (click)="onResetTimer()"
+            >
+            <i class="fas fa-sync-alt" style="margin-right: 5px;"></i>
+            </button>
+        </div>
+    </div>
+</div>

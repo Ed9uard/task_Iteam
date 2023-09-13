@@ -1,0 +1,17 @@
+<div [ngClass]="{'expanded': expanded}">
+    <div class="sidebar-actions">
+        <button
+            pButton
+            pRipple
+            type="button"
+            [icon]="expanded ? 'pi pi-angle-left' : 'pi pi-angle-right'"
+            class="p-button-rounded p-button-text"
+            (click)="expanded = !expanded"
+        >
+        </button>
+    </div>
+
+    <div class="sidebar-content">
+        <p-menu [model]="menuItems"></p-menu>
+    </div>
+</div>

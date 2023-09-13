@@ -1,0 +1,173 @@
+<div>
+    <form [formGroup]="patternForm">
+        <div class="formgrid grid">
+            <!-- Перший ряд -->
+            <div class="field col-4">
+                <label for="firstName">{{'CABINET.USER_PROFILE.FIRST_NAME' | translate}}</label>
+                <input
+                    id="firstName"
+                    type="text"
+                    pInputText
+                    class="p-inputtext-sm w-full"
+                    [formControl]="patternForm.get('firstName')"
+                >
+                <div *ngIf="patternForm.get('firstName')?.invalid && patternForm.get('firstName')?.dirty"
+                    class="validation-error-message"
+                    >Обов'язкове поле
+                </div>
+            </div>
+
+            <div class="field col-4">
+                <label for="lastName">{{'CABINET.USER_PROFILE.LAST_NAME' | translate}}</label>
+                <input
+                    id="lastName"
+                    type="text"
+                    pInputText
+                    class="p-inputtext-sm w-full"
+                    [formControl]="patternForm.get('lastName')"
+                >
+                <div *ngIf="patternForm.get('lastName')?.invalid && patternForm.get('lastName')?.dirty"
+                    class="validation-error-message"
+                    >Обов'язкове поле
+                </div>
+            </div>
+        </div>
+        <!-- Другий ряд -->
+        <div class="formgrid grid">
+            <div class="field col-4">
+                <label for="birthdate">{{'CABINET.USER_PROFILE.BIRTH_DATE' | translate}}</label>
+                <p-calendar
+                    inputId="birthdate"
+                    dateFormat="dd.mm.yy"
+                    firstDayOfWeek='1'
+                    styleClass="w-full"
+                    inputStyleClass="p-inputtext-sm"
+                    [formControl]="patternForm?.get('dateOfBirth')"
+                >
+                </p-calendar>
+                <div *ngIf="patternForm.get('dateOfBirth')?.invalid && patternForm.get('dateOfBirth')?.dirty"
+                class="validation-error-message"
+                >Обов'язкове поле
+            </div>
+            </div>
+        </div>
+        
+        <!-- наступний ряд -->
+        <div class="formgrid grid">
+            <div class="field col-4">
+                <label for="form-framework">{{'CABINET.USER_PROFILE.FRAMEWORK' | translate}}</label>
+                <p-dropdown
+                    inputId="form-framework"
+                    [dataKey]="'code'"
+                    [options]="frameworks"
+                    [formControl]="patternForm.get('framework')"
+                    [autoDisplayFirst]="false"
+                    [optionLabel]="'name'"
+                    styleClass="w-full p-inputtext-sm"
+                >
+                </p-dropdown>
+                <div *ngIf="patternForm.get('framework')?.invalid && patternForm.get('framework')?.dirty"
+                class="validation-error-message"
+                >Обов'язкове поле
+            </div>
+            </div>
+
+            <div class="field col-4">
+                <label for="form-frameworkVersion">{{'CABINET.USER_PROFILE.FRAMEWORK_VERSIONS' | translate}}</label>
+                <p-dropdown
+                    inputId="form-frameworkVersion"
+                    [options]="getFrameworkVersions()"
+                    [formControl]="patternForm.get('frameworkVersion')"
+                    [autoDisplayFirst]="false"
+                
+                    styleClass="w-full p-inputtext-sm"
+                >
+                </p-dropdown>
+                <div *ngIf="patternForm.get('frameworkVersion')?.invalid && patternForm.get('frameworkVersion')?.dirty"
+                class="validation-error-message"
+                >Обов'язкове поле
+            </div>
+            </div>
+        </div>
+
+        <!-- Наступний ряд -->
+        <div class="formgrid grid">
+            <div class="field col-4">
+                <label for="email">Email</label>
+                <input
+                    id="email"
+                    type="email"
+                    pInputText
+                    class="p-inputtext-sm w-full"
+                    [formControl]="patternForm.get('email')"
+                >
+                <div class="validation-error-message" *ngIf="patternForm.get('email')?.invalid && patternForm.get('email')?.dirty">
+                    Обов'язкове поле
+                </div>
+                <div *ngIf="patternForm.get('email')?.hasError('emailExists')">
+                    Емейл вже існує
+                </div>
+            </div>
+        </div>
+
+        <!-- Наступний ряд (для хобі) -->
+        <div class="formgrid grid">
+            <div class="field col-8">
+                <p-fieldset legend="Хобі">
+                    <div *ngIf="patternForm.get('hobby')" formArrayName="hobby">
+                        <div *ngFor="let hobbyControl of patternForm.get('hobby')?.controls; let i = index" [formGroupName]="i">
+                            <div class="formgrid grid">
+                                <div class="field col-4">
+                                    <label for="name{{i}}">{{'CABINET.USER_PROFILE.HOBBY_NAME' | translate}}</label>
+                                    <input
+                                        type="text"
+                                        pInputText
+                                        class="p-inputtext-sm w-full"
+                                        [formControlName]="'name'"
+                                        [id]="'name' + i"
+                                    >
+                                </div>
+                                <div class="field col-4">
+                                    <label for="duration{{i}}">{{'CABINET.USER_PROFILE.HOBBY_DURATION' | translate}}</label>
+                                    <input
+                                        type="text"
+                                        pInputText
+                                        class="p-inputtext-sm w-full"
+                                        [formControlName]="'duration'"
+                                        [id]="'duration' + i"
+                                    >
+                                </div>
+                                <div class="field col-4">
+                                    <button
+                                        style="margin-right: 8px; margin-top: 30px;"
+                                        pButton
+                                        pRipple
+                                        label="Вилучити"
+                                        class="p-button-sm p-button-outlined p-button-danger"
+                                        (click)="removeHobby(i)"
+                                    >
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" (click)="addHobby()" class="p-button p-button-primary" pButton label="Додати"></button>
+                </p-fieldset>
+            </div>
+        </div>
+
+        <div class="p-d-flex">
+            <button
+                style="margin-right: 8px;"
+                pButton
+                pRipple
+                [label]="'GENERAL.BUTTONS.SAVE' | translate"
+                type="submit"
+                icon="pi pi-check" class="p-button-success"
+                (click)="onSave()"
+                [disabled]="patternForm.invalid || patternForm.get('email')?.hasError('emailExists') || patternForm.get('email')?.pending"
+            >
+            </button>
+        </div>
+    </form>
+</div>
